@@ -1,0 +1,46 @@
+<h1>Register</h1>
+<form [formGroup]="userForm" (ngSubmit)="createUser()">
+  <table>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" formControlName="email"></td>
+      <td *ngIf="getEmail().touched && getEmail().errors.required">This field is required</td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td><input type="password" formControlName="password"></td>
+      <td *ngIf="getPassword().touched && getPassword().errors.required">This field is required</td>
+    </tr>
+    <tr>
+      <td>Confirm Password:</td>
+      <td><input type="password" formControlName="confirmPassword"></td>
+      <td *ngIf="getConfirmPassword().touched && getConfirmPassword().errors.required">This field is required</td>
+      <td *ngIf="getConfirmPassword().hasError('checkPasswords')">Mật khẩu không trùng khớp!</td>
+    </tr>
+    <tr>
+      <td>Country:</td>
+      <td><input type="text" formControlName="country"></td>
+      <td *ngIf="getCountry().touched && getCountry().errors.required">This field is required</td>
+    </tr>
+    <tr>
+      <td>Age:</td>
+      <td><input type="text" formControlName="age"></td>
+      <td *ngIf="getAge().touched && getAge().errors.required">This field is required</td>
+    </tr>
+    <tr>
+      <td>Gender:</td>
+      <td><input type="text" formControlName="gender"></td>
+      <td *ngIf="getGender().touched && getGender().errors.required">This field is required</td>
+    </tr>
+    <tr>
+      <td>Phone:</td>
+      <td><input type="text" formControlName="phone"></td>
+      <td *ngIf="getPhone().touched && getPhone().errors.required">This field is required</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="submit" value="Submit"></td>
+    </tr>
+  </table>
+</form>
+
