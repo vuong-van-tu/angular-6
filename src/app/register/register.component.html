@@ -4,38 +4,71 @@
     <tr>
       <td>Email:</td>
       <td><input type="text" formControlName="email"></td>
-      <td *ngIf="getEmail().touched && getEmail().errors.required">This field is required</td>
+      <td>
+        <div *ngIf="!getEmail()?.valid&&(getEmail()?.dirty||getEmail()?.touched)">
+          <div [hidden]="!getEmail().errors.required">This field is required</div>
+          <div [hidden]="!getEmail().errors.email">Invalid email id</div>
+        </div>
+      </td>
     </tr>
     <tr>
       <td>Password:</td>
       <td><input type="password" formControlName="password"></td>
-      <td *ngIf="getPassword().touched && getPassword().errors.required">This field is required</td>
+      <td>
+        <div *ngIf="!getPassword()?.valid&&(getPassword()?.dirty||getPassword()?.touched)">
+          <div [hidden]="!getPassword().errors.required">This field is required</div>
+          <div [hidden]="!getPassword().errors.minlength">Min length is 6</div>
+        </div>
+      </td>
     </tr>
     <tr>
       <td>Confirm Password:</td>
       <td><input type="password" formControlName="confirmPassword"></td>
-      <td *ngIf="getConfirmPassword().touched && getConfirmPassword().errors.required">This field is required</td>
-      <td *ngIf="getConfirmPassword().hasError('checkPasswords')">Mật khẩu không trùng khớp!</td>
+      <td>
+        <div *ngIf="!getConfirmPassword()?.valid&&(getConfirmPassword()?.dirty||getConfirmPassword()?.touched)">
+          <div [hidden]="!getConfirmPassword().errors.required">This field is required</div>
+          <div [hidden]="!getConfirmPassword().errors.minlength">Min length is 6</div>
+        </div>
+        <div *ngIf="userForm.value.password!=userForm.value.confirmPassword">Password does not match</div>
+      </td>
     </tr>
     <tr>
       <td>Country:</td>
       <td><input type="text" formControlName="country"></td>
-      <td *ngIf="getCountry().touched && getCountry().errors.required">This field is required</td>
     </tr>
     <tr>
       <td>Age:</td>
       <td><input type="text" formControlName="age"></td>
-      <td *ngIf="getAge().touched && getAge().errors.required">This field is required</td>
+      <td>
+        <div *ngIf="!getAge()?.valid&&(getAge()?.dirty||getAge()?.touched)">
+          <div [hidden]="!getAge().errors.required">This field is required</div>
+          <div [hidden]="!getAge().errors.min">Min is 18</div>
+        </div>
+      </td>
     </tr>
     <tr>
       <td>Gender:</td>
-      <td><input type="text" formControlName="gender"></td>
-      <td *ngIf="getGender().touched && getGender().errors.required">This field is required</td>
+      <td>
+        <input type="radio" value="male" name="gender" formControlName="gender" [checked]='true'> Male
+        <input type="radio" value="female" name="gender" formControlName="gender"> Female
+      </td>
+      <td>
+        <div *ngIf="!getGender().valid && (getGender().dirty ||getGender().touched)">
+          <div [hidden]="!getGender().errors.required">
+            gender is required
+          </div>
+        </div>
+      </td>
     </tr>
     <tr>
       <td>Phone:</td>
       <td><input type="text" formControlName="phone"></td>
-      <td *ngIf="getPhone().touched && getPhone().errors.required">This field is required</td>
+      <td>
+        <div *ngIf="!getPhone()?.valid&&(getPhone()?.dirty||getPhone()?.touched)">
+          <div [hidden]="!getPhone().errors.required">This field is required</div>
+          <div [hidden]="!getPhone().errors.pattern">Form: +8412345678</div>
+        </div>
+      </td>
     </tr>
     <tr>
       <td></td>

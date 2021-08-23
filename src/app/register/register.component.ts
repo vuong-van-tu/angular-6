@@ -10,13 +10,13 @@ import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, 
 export class RegisterComponent implements OnInit {
   users: User[] = [];
   userForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required,Validators.email]),
+    password: new FormControl('', [Validators.required,Validators.minLength(6)]),
+    confirmPassword: new FormControl('', [Validators.required,Validators.minLength(6)]),
     country: new FormControl('', [Validators.required]),
-    age: new FormControl('', [Validators.required]),
+    age: new FormControl('', [Validators.required,Validators.min(18)]),
     gender: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required])
+    phone: new FormControl('', [Validators.required,Validators.pattern(new RegExp("^\\+84 \\d{8,9}$"))])
   });
 
   constructor() {
